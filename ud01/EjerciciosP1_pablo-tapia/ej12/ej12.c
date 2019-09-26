@@ -12,7 +12,10 @@
 	pipe(fd);
 	p = fork();
 
-	if (p == 0) {
+	if (p == -1) {
+		printf("Error al crear el proceso HIJO");
+		exit(-1);
+	} else if (p == 0) {
 		printf("El HIJO envía algo al pipe.\n");
 		write(fd[1], mensaje, longitud);
 	} else {

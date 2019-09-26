@@ -6,9 +6,14 @@
 
 void main() {
 	pid_t p1 = fork();
-	if (p1 == 0) {
+	if (p1 == -1) {
+		printf("Error al crear el Proceso Hijo");
+		exit(-1);
+	} else if (p1 == 0) {
 		pid_t p2 = fork();
-		if (p2 == 0) {
+		if (p2 == -1) {
+			printf("Error al crear el Proceso Nieto");	
+		} else if (p2 == 0) {
 			printf("Soy el Proceso Nieto (PID: %d):\n"
 				"-Mi padre es el Proceso Hijo (PID: %d).\n\n", getpid(), getppid());
 		} else {
